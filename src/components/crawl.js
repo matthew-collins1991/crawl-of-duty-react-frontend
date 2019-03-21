@@ -5,13 +5,16 @@ class Crawl extends React.Component {
     return (
       <div>
         <p>{this.props.name}</p>
+        <ul>
+          {this.props.pubs.map(pub => (
+            <li key={pub.id}>{pub.name}</li>
+          ))}
+        </ul>
       </div>
     )
   }
 
-  static defaultProps = {
-    name: "test"
-  }
+  static defaultProps = {}
 }
 
 export default Crawl

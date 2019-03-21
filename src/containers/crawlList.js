@@ -1,8 +1,9 @@
 import React from "react"
+import Crawl from "../components/crawl.js"
 
 class CrawlList extends React.Component {
   render() {
-    return <div>test</div>
+    return this.props.crawls.map(crawl => <Crawl key={crawl.id} {...crawl} />)
   }
 
   static defaultProps = {}

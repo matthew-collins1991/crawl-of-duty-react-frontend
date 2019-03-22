@@ -7,7 +7,7 @@ class CrawlCard extends React.Component {
       <Card>
         <Image src="http://www.samtrans.com/Assets/SamTrans/Timetables/RB121/Maps/Route+61_2016_08-07.png" />
         <div className="content">
-          <a className="header">{this.props.name}</a>
+          <h3 className="header">{this.props.name}</h3>
           <ul>
             {this.props.pubs.map(pub => (
               <li key={pub.id}>{pub.name}</li>

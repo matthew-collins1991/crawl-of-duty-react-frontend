@@ -4,7 +4,7 @@ import { Card, Image } from "semantic-ui-react"
 class CrawlCard extends React.Component {
   render() {
     return (
-      <Card>
+      <Card link>
         <Image src="http://www.samtrans.com/Assets/SamTrans/Timetables/RB121/Maps/Route+61_2016_08-07.png" />
         <div className="content">
           <h3 className="header">{this.props.name}</h3>
@@ -13,7 +13,9 @@ class CrawlCard extends React.Component {
               <li key={pub.id}>{pub.name}</li>
             ))}
           </ul>
-          <p>⭐⭐⭐⭐⭐</p>
+          <p>
+            <span role="img">⭐⭐⭐⭐⭐</span>
+          </p>
         </div>
       </Card>
     )

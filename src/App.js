@@ -14,8 +14,6 @@ class App extends Component {
       <Index />
       </div>
     )
-    
-    
   }
 }
 

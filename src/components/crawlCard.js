@@ -1,10 +1,11 @@
 import React from "react"
-import { Card } from "semantic-ui-react"
+import { Card, Image } from "semantic-ui-react"
 
 class CrawlCard extends React.Component {
   render() {
     return (
       <Card>
+        <Image src="http://www.samtrans.com/Assets/SamTrans/Timetables/RB121/Maps/Route+61_2016_08-07.png" />
         <div className="content">
           <a className="header">{this.props.name}</a>
           <ul>
@@ -12,6 +13,7 @@ class CrawlCard extends React.Component {
               <li key={pub.id}>{pub.name}</li>
             ))}
           </ul>
+          <p>⭐⭐⭐⭐⭐</p>
         </div>
       </Card>
     )

@@ -3,9 +3,13 @@ import CrawlCard from "../components/crawlCard.js"
 
 class CrawlCardList extends React.Component {
   render() {
-    return this.props.crawls.map(crawl => (
-      <CrawlCard key={crawl.id} {...crawl} />
-    ))
+    return (
+      <div className="cardList">
+        {this.props.crawls.map(crawl => (
+          <CrawlCard key={crawl.id} {...crawl} />
+        ))}
+      </div>
+    )
   }
 
   static defaultProps = {}

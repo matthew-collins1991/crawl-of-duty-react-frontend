@@ -11,14 +11,17 @@ export default class CrawlContainer extends Component {
   render() {
     return (
       <div className="ui stackable two column grid">
-        <div className="sixteen wide column">
+        <div className="eight wide column">
           <CrawlDetails />
         </div>
-        <div className="eight wide column">
-          <MapContainer />
-        </div>
-        <div className="eight wide column">
-          <PubList />
+
+        <div className="row">
+          <div className="ten wide column">
+            <MapContainer />
+          </div>
+          <div className="six wide column">
+            <PubList />
+          </div>
         </div>
       </div>
     )

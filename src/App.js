@@ -7,7 +7,7 @@ import CrawlContainer from "./containers/crawlContainer.js"
 class App extends Component {
 
   state = {
-    currentlyViewing: 'home'
+    currentlyViewing: 'bob'
   }
 
   updateViewing = (view) => {

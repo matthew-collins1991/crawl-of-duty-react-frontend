@@ -15,15 +15,15 @@ export default class CrawlContainer extends Component {
 
     render(){
         return(
-            <div class="ui stackable two column grid">
-                
-                <div class="sixteen wide column">
+            <div className="ui stackable two column grid">
+
+                <div className="two wide column">
                     <CrawlDetails />
                 </div>
-                <div class="eight wide column">
+                <div className="eight wide column">
                     <MapContainer />
                 </div>
-                <div class="eight wide column">
+                <div className="eight wide column">
                     <PubList />
                 </div>
             </div>

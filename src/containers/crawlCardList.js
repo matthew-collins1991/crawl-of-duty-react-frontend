@@ -1,14 +1,15 @@
 import React from "react"
 import CrawlCard from "../components/crawlCard.js"
+import { Card } from "semantic-ui-react"
 
 class CrawlCardList extends React.Component {
   render() {
     return (
-      <div className="cardList">
+      <Card.Group itemsPerRow={4}>
         {this.props.crawls.map(crawl => (
           <CrawlCard key={crawl.id} {...crawl} />
         ))}
-      </div>
+      </Card.Group>
     )
   }
 

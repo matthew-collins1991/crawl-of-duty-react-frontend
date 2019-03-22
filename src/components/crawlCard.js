@@ -1,20 +1,21 @@
 import React from "react"
+import { Card } from "semantic-ui-react"
 
-class Crawl extends React.Component {
+class CrawlCard extends React.Component {
   render() {
     return (
-      <div>
+      <Card color="red">
         <p>{this.props.name}</p>
         <ul>
           {this.props.pubs.map(pub => (
             <li key={pub.id}>{pub.name}</li>
           ))}
         </ul>
-      </div>
+      </Card>
     )
   }
 
   static defaultProps = {}
 }
 
-export default Crawl
+export default CrawlCard

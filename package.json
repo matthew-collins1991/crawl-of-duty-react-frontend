@@ -6,6 +6,10 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
+<<<<<<< HEAD
+=======
+    "semantic-ui": "^2.4.2",
+>>>>>>> 2282a88297bc57ca639d2058521e2f323d486ceb
     "semantic-ui-react": "^0.86.0"
   },
   "scripts": {

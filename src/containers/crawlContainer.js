@@ -4,20 +4,39 @@ import MapContainer from "../components/mapContainer.js"
 import PubList from "../components/pubList.js"
 
 export default class CrawlContainer extends Component {
-  state = {}
+  state = { suggestedPubs: [], crawlPubs: [] }
 
   componentDidMount() {}
+
+  getPubsAPI = place => {
+    const clientID = "5K2PO0TCBUH5ZKRLQQVZVYOV21JQSUVJ44T35142BHVUFKUI"
+    const clientSecret = "GIZVTNTL3HOXRFIUDPT1O050GBPCKF3ZRPI3RMS5L0T4JD1M"
+
+    const api = `https://api.foursquare.com/v2/venues/explore?client_id=${clientID}&client_secret=${clientSecret}&v=20180323&limit=10&near=${place}&section=drinks`
+
+    fetch(api)
+      .then(res => res.json())
+      .then(resp =>
+        this.setState({
+          suggestedPubs: resp.response.groups[0].items
+        })
+      )
+  }
 
   render() {
     return (
       <div className="ui stackable two column grid">
         <div className="eight wide column">
-          <CrawlDetails />
+          <CrawlDetails
+            handleClick={this.getPubsAPI}
+            suggestedPubs={this.state.suggestedPubs}
+            crawlPubs={this.state.suggestedPubs}
+          />
         </div>
 
         <div className="row">
           <div className="ten wide column">
-            <MapContainer />
+            <MapContainer suggestedPubs={this.state.suggestedPubs} />
           </div>
           <div className="six wide column">
             <PubList />

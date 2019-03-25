@@ -3,8 +3,13 @@ import CrawlDetails from "../components/crawlDetails.js"
 import MapContainer from "../components/mapContainer.js"
 import PubList from "../components/pubList.js"
 
+
 export default class CrawlContainer extends Component {
-  state = { suggestedPubs: [], crawlPubs: [] }
+  state = { 
+      suggestedPubs: [], 
+      crawlPubs: [],
+      selectedPubs: [] 
+    }
 
   componentDidMount() {}
 
@@ -23,6 +28,10 @@ export default class CrawlContainer extends Component {
       )
   }
 
+  addLocation = (data) => {
+    console.log(data.name)
+  }
+
   render() {
     return (
       <div className="ui stackable two column grid">
@@ -36,7 +45,7 @@ export default class CrawlContainer extends Component {
 
         <div className="row">
           <div className="ten wide column">
-            <MapContainer suggestedPubs={this.state.suggestedPubs} />
+            <MapContainer suggestedPubs={this.state.suggestedPubs} addLocation={this.addLocation}/>
           </div>
           <div className="six wide column">
             <PubList />

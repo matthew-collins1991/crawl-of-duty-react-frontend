@@ -26,6 +26,8 @@ export class MapContainer extends Component {
     }
   }
 
+
+
   render() {
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
@@ -38,6 +40,7 @@ export class MapContainer extends Component {
                 lat: pub.venue.location.lat,
                 lng: pub.venue.location.lng
               }}
+              
             />
           )
         })}
@@ -47,9 +50,11 @@ export class MapContainer extends Component {
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
         >
-          <div>
+          
             <h4>{this.state.selectedPlace.name}</h4>
-          </div>
+            <button onClick={console.log('hi')}>log bar</button>
+          
+
         </InfoWindow>
       </CurrentLocation>
     )

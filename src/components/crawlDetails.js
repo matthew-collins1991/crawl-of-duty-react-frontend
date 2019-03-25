@@ -3,7 +3,7 @@ import { Form, Button } from "semantic-ui-react"
 
 export default class PubList extends Component {
   state = {
-    placeInput: ""
+    placeInput: "Spitalfields"
   }
 
   componentDidMount() {}

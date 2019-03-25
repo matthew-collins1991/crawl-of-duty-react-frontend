@@ -1,6 +1,12 @@
 import React, { Component } from "react"
 import { Image } from "semantic-ui-react"
-import { Map, GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react"
+import {
+  Map,
+  GoogleApiWrapper,
+  InfoWindow,
+  Marker,
+  Polyline
+} from "google-maps-react"
 import CurrentLocation from "./map"
 
 export class MapContainer extends Component {
@@ -8,6 +14,12 @@ export class MapContainer extends Component {
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {}
+  }
+
+  getLinePath = () => {
+    return this.props.suggestedPubs.map(pub => {
+      return { lat: pub.venue.location.lat, lng: pub.venue.location.lng }
+    })
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -45,6 +57,7 @@ export class MapContainer extends Component {
           )
         })}
 
+        <Polyline path={this.getLinePath()} />
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}

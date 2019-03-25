@@ -1,13 +1,11 @@
 import React, { Component } from "react"
-import { Image } from "semantic-ui-react"
 import {
-  Map,
   GoogleApiWrapper,
-  InfoWindow,
   Marker,
   Polyline
 } from "google-maps-react"
 import CurrentLocation from "./map"
+import InfoWindowEx from './InfoWindowEx'
 
 export class MapContainer extends Component {
   state = {
@@ -22,12 +20,14 @@ export class MapContainer extends Component {
     })
   }
 
-  onMarkerClick = (props, marker, e) =>
+  onMarkerClick = (props, marker) => {
+
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
       showingInfoWindow: true
     })
+}
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -37,6 +37,9 @@ export class MapContainer extends Component {
       })
     }
   }
+
+  consoley = () => 
+    console.log('hello')
 
 
 
@@ -52,23 +55,22 @@ export class MapContainer extends Component {
                 lat: pub.venue.location.lat,
                 lng: pub.venue.location.lng
               }}
-              
             />
           )
         })}
 
         <Polyline path={this.getLinePath()} />
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}
-        >
-          
-            <h4>{this.state.selectedPlace.name}</h4>
-            <button onClick={console.log('hi')}>log bar</button>
-          
 
-        </InfoWindow>
+        <InfoWindowEx
+        marker={this.state.activeMarker}
+        visible={this.state.showingInfoWindow}
+        onClose={this.onClose}>
+        <div>
+            <h4>{this.state.selectedPlace.name}</h4>
+            <input type="button" value="Blah" onClick={() =>  console.log(this.state.activeMarker.name) }/>
+            </div>
+        </InfoWindowEx>
+        
       </CurrentLocation>
     )
   }

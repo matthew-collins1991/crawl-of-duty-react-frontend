@@ -6,8 +6,7 @@ import PubList from "../components/pubList.js"
 export default class CrawlContainer extends Component {
   state = {
     suggestedPubs: [],
-    crawlPubs: [],
-    selectedPubs: []
+    selectedPubIDs: []
   }
 
   componentDidMount() {}
@@ -31,6 +30,12 @@ export default class CrawlContainer extends Component {
     console.log(data.name)
   }
 
+  addToSelectedPubIDs = (id) => {
+    this.setState({
+        selectedPubIDs: [...this.state.selectedPubIDs, id]
+    })
+  }
+
   render() {
     return (
       <div className="ui stackable two column grid">
@@ -46,8 +51,9 @@ export default class CrawlContainer extends Component {
           <div className="ten wide column">
             <MapContainer
               suggestedPubs={this.state.suggestedPubs}
-              selectedPubs={this.state.selectedPubs}
+              selectedPubIDs={this.state.selectedPubIDs}
               addLocation={this.addLocation}
+              addToSelectedPubIDs = {this.addToSelectedPubIDs}
             />
           </div>
           <div className="six wide column">

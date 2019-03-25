@@ -11,21 +11,22 @@ export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,
     activeMarker: {},
-    selectedPlace: {}
+    selectedPlace: {},
+    selectedID: ''
   }
 
   getLinePath = () => {
-    return this.props.selectedPubs.map(pub => {
+    return this.props.selectedPubIDs.map(pub => {
       return { lat: pub.venue.location.lat, lng: pub.venue.location.lng }
     })
   }
 
   onMarkerClick = (props, marker) => {
-
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: true,
+      selectedID: props.id
     })
 }
 
@@ -38,6 +39,8 @@ export class MapContainer extends Component {
     }
   }
 
+
+
   render() {
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
@@ -46,12 +49,13 @@ export class MapContainer extends Component {
             <Marker
               onClick={this.onMarkerClick}
               name={pub.venue.name}
+              id={pub.venue.id}
               position={{
                 lat: pub.venue.location.lat,
                 lng: pub.venue.location.lng
               }}
               icon={
-                this.props.selectedPubs.includes(pub)
+                this.props.selectedPubIDs.includes(pub.venue.id)
                   ? "https://cdn2.iconfinder.com/data/icons/harry-potter-colour-collection/60/32_-_Harry_Potter_-_Colour_-_Butterbeer-20.png"
                   : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
               }
@@ -59,7 +63,7 @@ export class MapContainer extends Component {
           )
         })}
 
-        <Polyline path={this.getLinePath()} />
+        {/* <Polyline path={this.getLinePath()} /> */}
 
         <InfoWindowEx
         marker={this.state.activeMarker}
@@ -67,7 +71,7 @@ export class MapContainer extends Component {
         onClose={this.onClose}>
         <div>
             <h4>{this.state.selectedPlace.name}</h4>
-            <input type="button" value="Blah" onClick={() =>  console.log(this.state.activeMarker.name) }/>
+            <input type="button" value="Blah" onClick={() =>  this.props.addToSelectedPubIDs(this.state.selectedID) }/>
             </div>
         </InfoWindowEx>
         

@@ -17,7 +17,7 @@ export class MapContainer extends Component {
   }
 
   getLinePath = () => {
-    return this.props.suggestedPubs.map(pub => {
+    return this.props.selectedPubs.map(pub => {
       return { lat: pub.venue.location.lat, lng: pub.venue.location.lng }
     })
   }
@@ -38,8 +38,6 @@ export class MapContainer extends Component {
     }
   }
 
-
-
   render() {
     return (
       <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
@@ -52,7 +50,11 @@ export class MapContainer extends Component {
                 lat: pub.venue.location.lat,
                 lng: pub.venue.location.lng
               }}
-              
+              icon={
+                this.props.selectedPubs.includes(pub)
+                  ? "https://cdn2.iconfinder.com/data/icons/harry-potter-colour-collection/60/32_-_Harry_Potter_-_Colour_-_Butterbeer-20.png"
+                  : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+              }
             />
           )
         })}
@@ -63,11 +65,7 @@ export class MapContainer extends Component {
           visible={this.state.showingInfoWindow}
           onClose={this.onClose}
         >
-          
-            <h4>{this.state.selectedPlace.name}</h4>
-            <button onClick={console.log('hi')}>log bar</button>
-          
-
+          <h4>{this.state.selectedPlace.name}</h4>
         </InfoWindow>
       </CurrentLocation>
     )

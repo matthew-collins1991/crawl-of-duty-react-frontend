@@ -6,7 +6,8 @@ import PubList from "../components/pubList.js"
 export default class CrawlContainer extends Component {
   state = {
     suggestedPubs: [],
-    selectedPubIDs: []
+    selectedPubIDs: [],
+    crawlName: ""
   }
 
   componentDidMount() {}
@@ -26,13 +27,21 @@ export default class CrawlContainer extends Component {
       )
   }
 
+  getPubFromId = id => {
+    return this.state.suggestedPubs.filter(pub => pub.venue.id === id)[0]
+  }
+
+  getPubsFromIDs = array => {
+    return array.map(pubId => this.getPubFromId(pubId))
+  }
+
   addLocation = data => {
     console.log(data.name)
   }
 
-  addToSelectedPubIDs = (id) => {
+  addToSelectedPubIDs = id => {
     this.setState({
-        selectedPubIDs: [...this.state.selectedPubIDs, id]
+      selectedPubIDs: [...this.state.selectedPubIDs, id]
     })
   }
 
@@ -51,13 +60,16 @@ export default class CrawlContainer extends Component {
           <div className="ten wide column">
             <MapContainer
               suggestedPubs={this.state.suggestedPubs}
+              selectedPubs={this.getPubsFromIDs(this.state.selectedPubIDs)}
               selectedPubIDs={this.state.selectedPubIDs}
               addLocation={this.addLocation}
-              addToSelectedPubIDs = {this.addToSelectedPubIDs}
+              addToSelectedPubIDs={this.addToSelectedPubIDs}
             />
           </div>
           <div className="six wide column">
-            <PubList />
+            <PubList
+              selectedPubs={this.getPubsFromIDs(this.state.selectedPubIDs)}
+            />
           </div>
         </div>
       </div>

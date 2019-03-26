@@ -18,7 +18,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <p>Crawl of Duty</p>
         <Nav updateViewing={view => this.updateViewing(view)} />
         {this.state.currentlyViewing === "home" ? (
           <Index />

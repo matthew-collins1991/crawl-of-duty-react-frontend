@@ -4,7 +4,7 @@ import InfoWindowEx from "./InfoWindowEx"
 
 const style = {
   //   position: "absolute",
-  width: "700px",
+  width: "100%",
   height: "700px"
 }
 

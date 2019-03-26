@@ -16,7 +16,23 @@ export default class CrawlContainer extends Component {
     zoom: 8
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.props.id) {
+      this.getCrawlFromId(this.props.id).then(crawl =>
+        this.setState({
+          selectedPubs: crawl.pubs,
+          selectedPubIDs: crawl.pubs.map(pub => pub.four_id),
+          suggestedPubs: crawl.pubs
+        })
+      )
+    }
+  }
+
+  getCrawlFromId = id => {
+    const API = `http://localhost:3000/api/v1/crawls/${id}`
+
+    return fetch(API).then(res => res.json())
+  }
 
   getPubsAPI = place => {
     const clientID = "5K2PO0TCBUH5ZKRLQQVZVYOV21JQSUVJ44T35142BHVUFKUI"

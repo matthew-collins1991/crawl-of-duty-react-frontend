@@ -1,10 +1,11 @@
 import React from "react"
 import { Card, Image } from "semantic-ui-react"
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
 
 class CrawlCard extends React.Component {
   render() {
     return (
-      <Card link>
+      <Card as={Link} to={`/crawls/${this.props.id}`}>
         <Image
           src={`https://loremflickr.com/320/240/pub?random=${this.props.id}`}
         />

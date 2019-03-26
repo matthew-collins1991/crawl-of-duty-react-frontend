@@ -6,7 +6,7 @@ import {
   Map
 } from "google-maps-react"
 import CurrentLocation from "./map"
-import InfoWindowEx from './InfoWindowEx'
+import InfoWindowEx from "./InfoWindowEx"
 
 const style = {
     //   position: "absolute",
@@ -52,7 +52,7 @@ export class MapContainer extends Component {
 
 
   getLinePath = () => {
-    return this.props.selectedPubIDs.map(pub => {
+    return this.props.selectedPubs.map(pub => {
       return { lat: pub.venue.location.lat, lng: pub.venue.location.lng }
     })
   }
@@ -64,7 +64,7 @@ export class MapContainer extends Component {
       showingInfoWindow: true,
       selectedID: props.id
     })
-}
+  }
 
   onClose = props => {
     if (this.state.showingInfoWindow) {
@@ -74,8 +74,6 @@ export class MapContainer extends Component {
       })
     }
   }
-
-
 
   render() {
     return (
@@ -103,23 +101,30 @@ export class MapContainer extends Component {
               }}
               icon={
                 this.props.selectedPubIDs.includes(pub.venue.id)
-                  ? "https://cdn2.iconfinder.com/data/icons/harry-potter-colour-collection/60/32_-_Harry_Potter_-_Colour_-_Butterbeer-20.png"
+                  ? "https://cdn2.iconfinder.com/data/icons/harry-potter-colour-collection/60/32_-_Harry_Potter_-_Colour_-_Butterbeer-32.png"
                   : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
               }
             />
           )
         })}
 
-        {/* <Polyline path={this.getLinePath()} /> */}
+        <Polyline path={this.getLinePath()} />
 
         <InfoWindowEx
-        marker={this.state.activeMarker}
-        visible={this.state.showingInfoWindow}
-        onClose={this.onClose}>
-        <div>
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+          onClose={this.onClose}
+        >
+          <div>
             <h4>{this.state.selectedPlace.name}</h4>
-            <input type="button" value="Blah" onClick={() =>  this.props.addToSelectedPubIDs(this.state.selectedID) }/>
-            </div>
+            <input
+              type="button"
+              value="Add to Crawl"
+              onClick={() =>
+                this.props.addToSelectedPubIDs(this.state.selectedID)
+              }
+            />
+          </div>
         </InfoWindowEx>
         
       </Map>

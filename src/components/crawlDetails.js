@@ -84,7 +84,7 @@ export default class crawlDetails extends Component {
         </Form>
         {this.state.placeSelected ? (
           <div className="six wide column">
-            <PubList selectedPubs={this.props.selectedPubs} />
+            <PubList selectedPubs={this.props.selectedPubs} startTime={this.state.startTimeInput} endTime={this.state.endTimeInput}/>
           </div>
         ) : null}
       </>

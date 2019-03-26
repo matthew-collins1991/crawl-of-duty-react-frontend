@@ -26,16 +26,6 @@ export default class crawlDetails extends Component {
       <>
         <Form style={{ width: 100 + "%", padding: 20 + "px" }}>
           <Form.Field>
-            <label>Please name your Crawl</label>
-            <input
-              value={this.state.nameInput}
-              onChange={event => {
-                this.setState({ nameInput: event.target.value })
-              }}
-              placeholder="Name your crawl"
-            />
-          </Form.Field>
-          <Form.Field>
             <label>Where is your Crawl</label>
             <input
               value={this.state.placeInput}
@@ -45,37 +35,37 @@ export default class crawlDetails extends Component {
               placeholder="Name a city or area"
             />
           </Form.Field>
-          <Form.Field>
-            <label>Start Time:</label>
-            <input
-              value={this.state.startTimeInput}
-              type="time"
-              onChange={event => {
-                this.setState({ startTimeInput: event.target.value })
-              }}
-            />
-          </Form.Field>
-          <Form.Field>
-            <label>End Time:</label>
-            <input
-              value={this.state.endTimeInput}
-              type="time"
-              onChange={event => {
-                this.setState({ endTimeInput: event.target.value })
-              }}
-            />
-          </Form.Field>
           {this.state.placeSelected ? (
             <>
               <Form.Field>
-                <select className="ui fluid search dropdown" multiple="">
-                  <option value="">
-                    Suggested Pubs ({this.props.suggestedPubs.length})
-                  </option>
-                  {this.props.suggestedPubs.map(pub => (
-                    <option value={pub.name}>{pub.name}</option>
-                  ))}
-                </select>
+                <label>Please name your Crawl</label>
+                <input
+                  value={this.state.nameInput}
+                  onChange={event => {
+                    this.setState({ nameInput: event.target.value })
+                  }}
+                  placeholder="Name your crawl"
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Start Time:</label>
+                <input
+                  value={this.state.startTimeInput}
+                  type="time"
+                  onChange={event => {
+                    this.setState({ startTimeInput: event.target.value })
+                  }}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>End Time:</label>
+                <input
+                  value={this.state.endTimeInput}
+                  type="time"
+                  onChange={event => {
+                    this.setState({ endTimeInput: event.target.value })
+                  }}
+                />
               </Form.Field>
             </>
           ) : (

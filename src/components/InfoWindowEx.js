@@ -14,7 +14,6 @@ export default class InfoWindowEx extends Component {
     }
   
     onInfoWindowOpen() {
-        console.log(this.props.children)
         ReactDOM.render(React.Children.only(this.props.children), this.containerElement);
         this.infoWindowRef.current.infowindow.setContent(this.containerElement);
     }

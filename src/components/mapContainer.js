@@ -2,18 +2,54 @@ import React, { Component } from "react"
 import {
   GoogleApiWrapper,
   Marker,
-  Polyline
+  Polyline,
+  Map
 } from "google-maps-react"
 import CurrentLocation from "./map"
 import InfoWindowEx from './InfoWindowEx'
 
+const style = {
+    //   position: "absolute",
+      width: "700px",
+      height: "700px"
+  }
+
 export class MapContainer extends Component {
   state = {
+    suggestedPubs: [],
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    selectedID: ''
+    selectedID: '',
+    coords: {
+        lat: 51.84,
+        lng: -0.12
+    },
+    zoom: 8
   }
+
+  componentWillReceiveProps(){
+      if (this.state.suggestedPubs.length === 0 && this.props.suggestedPubs[0] !== this.state.suggestedPubs[0]) {
+        this.setState({
+            suggestedPubs: this.props.suggestedPubs
+        })
+        this.updateMap()
+      }
+  }
+
+  updateMap = () => {
+    if (this.props.suggestedPubs.length !== 0){
+      const { lat, lng } = this.props.suggestedPubs[0].venue.location
+        this.setState({
+         zoom: 15,
+         coords: {
+          lat: lat,
+          lng: lng
+       }
+     }) 
+     }
+  }
+
 
   getLinePath = () => {
     return this.props.selectedPubIDs.map(pub => {
@@ -43,7 +79,18 @@ export class MapContainer extends Component {
 
   render() {
     return (
-      <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
+        <Map
+        google={this.props.google}
+        style={style}
+        initialCenter={
+          this.state.coords
+        }
+        center = {
+        this.state.coords
+        }
+        zoom={this.state.zoom}
+        onClick={this.onMapClicked}
+      >
         {this.props.suggestedPubs.map(pub => {
           return (
             <Marker
@@ -75,7 +122,7 @@ export class MapContainer extends Component {
             </div>
         </InfoWindowEx>
         
-      </CurrentLocation>
+      </Map>
     )
   }
 }

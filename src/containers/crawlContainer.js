@@ -6,7 +6,11 @@ import PubList from "../components/pubList.js"
 export default class CrawlContainer extends Component {
   state = {
     suggestedPubs: [],
-    selectedPubIDs: []
+    selectedPubIDs: [],
+    coords: {
+        lat: 51.84,
+        lng: -0.12
+    }
   }
 
   componentDidMount() {}
@@ -19,11 +23,12 @@ export default class CrawlContainer extends Component {
 
     fetch(api)
       .then(res => res.json())
-      .then(resp =>
+      .then(resp => 
         this.setState({
           suggestedPubs: resp.response.groups[0].items
         })
-      )
+      ).then(() => this.recenterMap())
+    
   }
 
   addLocation = data => {
@@ -34,6 +39,18 @@ export default class CrawlContainer extends Component {
     this.setState({
         selectedPubIDs: [...this.state.selectedPubIDs, id]
     })
+  }
+
+  recenterMap = () => {
+    const { lat, lng } = this.state.suggestedPubs[0].venue.location
+    this.setState({
+     zoom: 15,
+     coords: {
+      lat: lat,
+      lng: lng
+   }
+ }) 
+    console.log(this.state.coords)
   }
 
   render() {

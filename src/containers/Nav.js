@@ -1,65 +1,39 @@
-import React, { Component } from 'react'
-import {  Menu,  Dropdown, Button, Form } from 'semantic-ui-react'
+import React, { Component } from "react"
+import { Menu, Dropdown, Button, Form, Image } from "semantic-ui-react"
+import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom"
 
 export default class Nav extends Component {
+  componentDidMount() {}
 
-    state = {
-        activeItem: 'home'
-    }
-
-    handleItemClick = (e, { name }) => {
-        
-        this.setState({ 
-            activeItem: name 
-        })
-        this.props.updateViewing(name)
-    }
-        
-
-    componentDidMount() {
-
-    }
-
-    render(){
-        return(
-    <div>
-        <Menu pointing>
-          <Menu.Item 
-            name='home' 
-            active={this.state.activeItem === 'home'} 
-            onClick={this.handleItemClick} />
-          <Menu.Item
-            name='create-new'
-            active={this.state.activeItem === 'create-new'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            name='contact'
-            active={this.state.activeItem === 'contact'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Menu position='right'>
+  render() {
+    return (
+      <div>
+        <Menu>
+          <Menu.Item name="home" as={NavLink} to="/" />
+          <Menu.Item name="create-new" as={NavLink} to="/crawls/new" />
+          <Menu.Item name="contact" as={NavLink} to="/contact" />
+          <Menu.Menu position="right">
             <Menu.Item>
-            <Dropdown item text='Login'>
+              <Dropdown item text="Login">
                 <Dropdown.Menu>
-                <Form style={{width: 300 + 'px', padding: 20 + 'px'}}>
+                  <Form style={{ width: 300 + "px", padding: 20 + "px" }}>
                     <Form.Field>
-                        <label>First Name</label>
-                        <input placeholder='First Name' />
+                      <label>First Name</label>
+                      <input placeholder="First Name" />
                     </Form.Field>
                     <Form.Field>
-                        <label>Last Name</label>
-                        <input placeholder='Last Name' />
+                      <label>Last Name</label>
+                      <input placeholder="Last Name" />
                     </Form.Field>
 
-                    <Button type='submit'>Submit</Button>
-                </Form>
+                    <Button type="submit">Submit</Button>
+                  </Form>
                 </Dropdown.Menu>
-            </Dropdown>
+              </Dropdown>
             </Menu.Item>
           </Menu.Menu>
         </Menu>
       </div>
-        )
-    }
+    )
+  }
 }

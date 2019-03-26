@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Form, Button } from "semantic-ui-react"
 import PubList from "./pubList"
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
 
 export default class crawlDetails extends Component {
   state = {
@@ -89,7 +90,9 @@ export default class crawlDetails extends Component {
               endTime={this.state.endTimeInput}
               startTime={this.state.startTimeInput}
             />
-            <button
+            <Button
+              as={Link}
+              to="/"
               onClick={() =>
                 this.props.saveCrawl({
                   name: this.state.nameInput,
@@ -100,7 +103,7 @@ export default class crawlDetails extends Component {
               }
             >
               SAVE
-            </button>
+            </Button>
           </div>
         ) : null}
       </>

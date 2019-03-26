@@ -11,7 +11,8 @@ export default class CrawlContainer extends Component {
         lat: 51.84,
         lng: -0.12
     },
-    crawlName: ""
+    crawlName: "",
+    zoom: 8
   }
 
   componentDidMount() {}
@@ -70,12 +71,15 @@ export default class CrawlContainer extends Component {
             handleClick={this.getPubsAPI}
             suggestedPubs={this.state.suggestedPubs}
             crawlPubs={this.state.suggestedPubs}
+            
           />
         </div>
 
         <div className="row">
           <div className="ten wide column">
             <MapContainer
+              zoom={this.state.zoom}
+              coords={this.state.coords}
               suggestedPubs={this.state.suggestedPubs}
               selectedPubs={this.getPubsFromIDs(this.state.selectedPubIDs)}
               selectedPubIDs={this.state.selectedPubIDs}

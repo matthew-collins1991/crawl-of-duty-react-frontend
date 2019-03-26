@@ -5,7 +5,6 @@ import {
   Polyline,
   Map
 } from "google-maps-react"
-import CurrentLocation from "./map"
 import InfoWindowEx from "./InfoWindowEx"
 
 const style = {
@@ -15,40 +14,16 @@ const style = {
   }
 
 export class MapContainer extends Component {
-  state = {
+  
+    state = {
     suggestedPubs: [],
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    selectedID: '',
-    coords: {
-        lat: 51.84,
-        lng: -0.12
-    },
-    zoom: 8
+    selectedID: ''
   }
 
-  componentWillReceiveProps(){
-      if (this.state.suggestedPubs.length === 0 && this.props.suggestedPubs[0] !== this.state.suggestedPubs[0]) {
-        this.setState({
-            suggestedPubs: this.props.suggestedPubs
-        })
-        this.updateMap()
-      }
-  }
 
-  updateMap = () => {
-    if (this.props.suggestedPubs.length !== 0){
-      const { lat, lng } = this.props.suggestedPubs[0].venue.location
-        this.setState({
-         zoom: 15,
-         coords: {
-          lat: lat,
-          lng: lng
-       }
-     }) 
-     }
-  }
 
 
   getLinePath = () => {
@@ -81,12 +56,12 @@ export class MapContainer extends Component {
         google={this.props.google}
         style={style}
         initialCenter={
-          this.state.coords
+          this.props.coords
         }
         center = {
-        this.state.coords
+        this.props.coords
         }
-        zoom={this.state.zoom}
+        zoom={this.props.zoom}
         onClick={this.onMapClicked}
       >
         {this.props.suggestedPubs.map(pub => {

@@ -16,9 +16,7 @@ componentWillUpdate() {
 
 getTime = () => {
     if (this.state.startTime === this.props.startTime && this.state.endTime === this.props.endTime) {
-        console.log('hello Bitches') 
     }else{
-        console.log('hello Bitches 2') 
     this.setState({
         startTime: this.props.startTime,
         endTime: this.props.endTime
@@ -42,12 +40,9 @@ getTime = () => {
     let calcHours = 0
     if (end <= start) {
       calcHours = 24 - start + end
-      console.log(calcHours + ' hours')
     } else {
       calcHours = end - start
-      console.log(calcHours + ' hours')
     }
-    console.log(calcHours + 'bonjour')
     this.setState({
       hours: calcHours
     }, () => this.timePerPub())
@@ -57,10 +52,8 @@ getTime = () => {
     let calcMins = 0
     if (end <= start) {
       calcMins = start - end
-      console.log(calcMins + ' mins')
     } else {
       calcMins = end - start
-      console.log(calcMins+ ' mins')
     }
     this.setState({
       minutes: calcMins
@@ -68,7 +61,6 @@ getTime = () => {
   }
 
   timePerPub = () => {
-        console.log(this.state.hours + 'hours in bitches')
       let totalMins = (this.state.hours*60)+this.state.minutes
         this.setState({
             totalMins: totalMins
@@ -83,15 +75,15 @@ getTime = () => {
       var rminutes = Math.round(minutes);
       let startTime = this.state.startTime.split(":")
       let numStartTime = startTime.map(time => parseInt(time))
-      let newHour = numStartTime[0] + rhours
-      let newMins = numStartTime[1] + rminutes
+      let newHour = (numStartTime[0] + rhours) >= 10 ? `${(numStartTime[0] + rhours)}` : `0${(numStartTime[0] + rhours)}`
+      let newMins = (numStartTime[1] + rminutes) >= 10 ? `${(numStartTime[1] + rminutes)}` : `0${(numStartTime[1] + rminutes)}`
       if(newHour > 23){
-        newHour = newHour-24
+        (newHour-24) >= 10 ? newHour = `${newHour-24}` : newHour = `0${newHour-24}`
         return `${newHour}:${newMins}`
       }else{
+        
         return `${newHour}:${newMins}`
       }
-      
   }
 
 

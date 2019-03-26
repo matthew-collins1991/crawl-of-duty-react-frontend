@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { GoogleApiWrapper, Marker, Polyline, Map } from "google-maps-react"
 import InfoWindowEx from "./InfoWindowEx"
-import PubList from "./pubList"
+
 
 const style = {
   //   position: "absolute",

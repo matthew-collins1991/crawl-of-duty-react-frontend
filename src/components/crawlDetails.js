@@ -83,8 +83,12 @@ export default class crawlDetails extends Component {
           )}
         </Form>
         {this.state.placeSelected ? (
-          <div className="eight wide column">
-            <PubList selectedPubs={this.props.selectedPubs} endTime={this.state.endTimeInput} startTime={this.state.startTimeInput}/>
+          <div className="six wide column">
+            <PubList
+              selectedPubs={this.props.selectedPubs}
+              endTime={this.state.endTimeInput}
+              startTime={this.state.startTimeInput}
+            />
             <button
               onClick={() =>
                 this.props.saveCrawl({

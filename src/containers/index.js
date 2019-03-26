@@ -19,7 +19,7 @@ class Index extends React.Component {
   }
 
   render() {
-    return <CrawlCardList crawls={this.state.crawls} />
+    return <CrawlCardList crawls={this.state.crawls.reverse()} />
   }
 }
 

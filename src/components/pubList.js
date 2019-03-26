@@ -15,7 +15,7 @@ export default class PubList extends Component {
         )}
         {this.props.selectedPubs.map((pub, i) => (
           <p>
-            {i + 1}. {pub.venue.name}
+            {i + 1}. {pub.name}
           </p>
         ))}
       </div>

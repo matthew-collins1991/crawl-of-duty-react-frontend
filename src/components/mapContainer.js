@@ -1,34 +1,25 @@
 import React, { Component } from "react"
-import {
-  GoogleApiWrapper,
-  Marker,
-  Polyline,
-  Map
-} from "google-maps-react"
+import { GoogleApiWrapper, Marker, Polyline, Map } from "google-maps-react"
 import InfoWindowEx from "./InfoWindowEx"
 
 const style = {
-    //   position: "absolute",
-      width: "700px",
-      height: "700px"
-  }
+  //   position: "absolute",
+  width: "700px",
+  height: "700px"
+}
 
 export class MapContainer extends Component {
-  
-    state = {
+  state = {
     suggestedPubs: [],
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {},
-    selectedID: ''
+    selectedID: ""
   }
-
-
-
 
   getLinePath = () => {
     return this.props.selectedPubs.map(pub => {
-      return { lat: pub.venue.location.lat, lng: pub.venue.location.lng }
+      return { lat: pub.lat, lng: pub.lng }
     })
   }
 
@@ -52,15 +43,11 @@ export class MapContainer extends Component {
 
   render() {
     return (
-        <Map
+      <Map
         google={this.props.google}
         style={style}
-        initialCenter={
-          this.props.coords
-        }
-        center = {
-        this.props.coords
-        }
+        initialCenter={this.props.coords}
+        center={this.props.coords}
         zoom={this.props.zoom}
         onClick={this.onMapClicked}
       >
@@ -68,14 +55,14 @@ export class MapContainer extends Component {
           return (
             <Marker
               onClick={this.onMarkerClick}
-              name={pub.venue.name}
-              id={pub.venue.id}
+              name={pub.name}
+              id={pub.four_id}
               position={{
-                lat: pub.venue.location.lat,
-                lng: pub.venue.location.lng
+                lat: pub.lat,
+                lng: pub.lng
               }}
               icon={
-                this.props.selectedPubIDs.includes(pub.venue.id)
+                this.props.selectedPubIDs.includes(pub.four_id)
                   ? "https://cdn2.iconfinder.com/data/icons/harry-potter-colour-collection/60/32_-_Harry_Potter_-_Colour_-_Butterbeer-32.png"
                   : "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
               }
@@ -101,7 +88,6 @@ export class MapContainer extends Component {
             />
           </div>
         </InfoWindowEx>
-        
       </Map>
     )
   }

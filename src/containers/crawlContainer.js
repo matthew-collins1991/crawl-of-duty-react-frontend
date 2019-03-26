@@ -7,9 +7,10 @@ export default class CrawlContainer extends Component {
   state = {
     suggestedPubs: [],
     selectedPubIDs: [],
+    selectedPubs: [],
     coords: {
-        lat: 51.84,
-        lng: -0.12
+      lat: 51.84,
+      lng: -0.12
     },
     crawlName: "",
     zoom: 8
@@ -25,17 +26,31 @@ export default class CrawlContainer extends Component {
 
     fetch(api)
       .then(res => res.json())
-      .then(resp => 
+      .then(resp =>
         this.setState({
-          suggestedPubs: resp.response.groups[0].items
+          suggestedPubs: this.convertPubs(
+            resp.response.groups[0].items.map(item => item.venue)
+          )
         })
-      ).then(() => this.recenterMap())
-    
+      )
+      .then(() => this.recenterMap())
   }
 
   getPubFromId = id => {
-    return this.state.suggestedPubs.filter(pub => pub.venue.id === id)[0]
+    return this.state.suggestedPubs.filter(pub => pub.four_id === id)[0]
   }
+
+  convertPub = fullPub => {
+    let pub = {
+      name: fullPub.name,
+      four_id: fullPub.id,
+      lat: fullPub.location.lat,
+      lng: fullPub.location.lng
+    }
+    return pub
+  }
+
+  convertPubs = array => array.map(pub => this.convertPub(pub))
 
   getPubsFromIDs = array => {
     return array.map(pubId => this.getPubFromId(pubId))
@@ -47,19 +62,20 @@ export default class CrawlContainer extends Component {
 
   addToSelectedPubIDs = id => {
     this.setState({
-      selectedPubIDs: [...this.state.selectedPubIDs, id]
+      selectedPubIDs: [...this.state.selectedPubIDs, id],
+      selectedPubs: [...this.state.selectedPubs, this.getPubFromId(id)]
     })
   }
 
   recenterMap = () => {
-    const { lat, lng } = this.state.suggestedPubs[0].venue.location
+    const { lat, lng } = this.state.suggestedPubs[0]
     this.setState({
-     zoom: 15,
-     coords: {
-      lat: lat,
-      lng: lng
-   }
- }) 
+      zoom: 15,
+      coords: {
+        lat: lat,
+        lng: lng
+      }
+    })
     console.log(this.state.coords)
   }
 
@@ -71,7 +87,6 @@ export default class CrawlContainer extends Component {
             handleClick={this.getPubsAPI}
             suggestedPubs={this.state.suggestedPubs}
             crawlPubs={this.state.suggestedPubs}
-            
           />
         </div>
 

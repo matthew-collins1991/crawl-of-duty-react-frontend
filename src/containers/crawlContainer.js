@@ -38,18 +38,22 @@ export default class CrawlContainer extends Component {
 
   saveCrawl = crawl => {
     const API = "http://localhost:3000/api/v1/crawls"
+    const newCrawl = {
+      crawl: crawl,
+      pubs: this.state.selectedPubs
+    }
 
     return fetch(API, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(crawl)
+      body: JSON.stringify(newCrawl)
     })
-      .then(res => res.json())
-      .then(res =>
-        this.state.selectedPubs.forEach(pub => {
-          this.savePub(pub, res)
-        })
-      )
+    // .then(res => res.json())
+    // .then(res =>
+    //   this.state.selectedPubs.forEach(pub => {
+    //     this.savePub(pub, res)
+    //   })
+    // )
   }
 
   savePub = (pub, crawl) => {

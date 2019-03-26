@@ -7,9 +7,10 @@ import {
 } from "google-maps-react"
 import InfoWindowEx from "./InfoWindowEx"
 
+
 const style = {
     //   position: "absolute",
-      width: "700px",
+      width: "100%",
       height: "700px"
   }
 
@@ -22,8 +23,6 @@ export class MapContainer extends Component {
     selectedPlace: {},
     selectedID: ''
   }
-
-
 
 
   getLinePath = () => {
@@ -110,3 +109,4 @@ export class MapContainer extends Component {
 export default GoogleApiWrapper({
   apiKey: "AIzaSyB67HJnfJOIlyBoeagBpfvIzXniJaql1dA"
 })(MapContainer)
+

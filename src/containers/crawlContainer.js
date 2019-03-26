@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import CrawlDetails from "../components/crawlDetails.js"
 import MapContainer from "../components/mapContainer.js"
 import PubList from "../components/pubList.js"
+import "semantic-ui-react"
 
 export default class CrawlContainer extends Component {
   state = {
@@ -65,17 +66,17 @@ export default class CrawlContainer extends Component {
 
   render() {
     return (
-      <div className="ui stackable two column grid">
-        <div className="eight wide column">
+      <div className="ui grid">
+        <div className="six wide column">
           <CrawlDetails
             handleClick={this.getPubsAPI}
             suggestedPubs={this.state.suggestedPubs}
             crawlPubs={this.state.suggestedPubs}
-            
+            selectedPubIDs={this.state.selectedPubIDs}
           />
         </div>
 
-        <div className="row">
+        
           <div className="ten wide column">
             <MapContainer
               zoom={this.state.zoom}
@@ -87,13 +88,8 @@ export default class CrawlContainer extends Component {
               addToSelectedPubIDs={this.addToSelectedPubIDs}
             />
           </div>
-          <div className="six wide column">
-            <PubList
-              selectedPubs={this.getPubsFromIDs(this.state.selectedPubIDs)}
-            />
-          </div>
         </div>
-      </div>
+
     )
   }
 }

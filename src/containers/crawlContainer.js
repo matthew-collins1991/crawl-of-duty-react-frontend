@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import CrawlDetails from "../components/crawlDetails.js"
 import MapContainer from "../components/mapContainer.js"
-import PubList from "../components/pubList.js"
+
 import "semantic-ui-react"
 
 export default class CrawlContainer extends Component {

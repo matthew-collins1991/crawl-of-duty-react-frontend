@@ -17,7 +17,7 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Index} />
-
+            
             <Route path="/crawls/new" component={CrawlContainer} />
 
             <Route

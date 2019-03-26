@@ -8,14 +8,14 @@ export default class PubList extends Component {
 
   render() {
     return (
-      <div className = 'eight wide column'>
+      <div className="eight wide column">
         {this.props.selectedPubs.length > 0 ? (
           <h3>Your Crawl</h3>
         ) : (
           <h5>Click on the map to add your first pub!</h5>
         )}
         {this.props.selectedPubs.map((pub, i) => (
-          <p>
+          <p key={pub.four_id}>
             {i + 1}. {pub.name}
           </p>
         ))}

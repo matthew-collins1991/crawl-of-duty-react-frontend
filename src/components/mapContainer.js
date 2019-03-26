@@ -1,11 +1,12 @@
 import React, { Component } from "react"
 import { GoogleApiWrapper, Marker, Polyline, Map } from "google-maps-react"
 import InfoWindowEx from "./InfoWindowEx"
+import PubList from "./pubList"
 
 const style = {
   //   position: "absolute",
   width: "100%",
-  height: "700px"
+  height: "93vh"
 }
 
 export class MapContainer extends Component {
@@ -54,6 +55,7 @@ export class MapContainer extends Component {
         {this.props.suggestedPubs.map(pub => {
           return (
             <Marker
+              key={pub.four_id}
               onClick={this.onMarkerClick}
               name={pub.name}
               id={pub.four_id}

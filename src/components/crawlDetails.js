@@ -85,6 +85,18 @@ export default class crawlDetails extends Component {
         {this.state.placeSelected ? (
           <div className="six wide column">
             <PubList selectedPubs={this.props.selectedPubs} />
+            <button
+              onClick={() =>
+                this.props.saveCrawl({
+                  name: this.state.nameInput,
+                  start_time: this.state.startTimeInput,
+                  end_time: this.state.endTimeInput,
+                  order_array: this.props.selectedPubIDs.toString()
+                })
+              }
+            >
+              SAVE
+            </button>
           </div>
         ) : null}
       </>

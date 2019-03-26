@@ -13,7 +13,6 @@ export default class CrawlContainer extends Component {
       lat: 51.84,
       lng: -0.12
     },
-    crawlName: "",
     zoom: 8
   }
 
@@ -35,6 +34,34 @@ export default class CrawlContainer extends Component {
         })
       )
       .then(() => this.recenterMap())
+  }
+
+  saveCrawl = crawl => {
+    const API = "http://localhost:3000/api/v1/crawls"
+
+    return fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(crawl)
+    })
+      .then(res => res.json())
+      .then(res =>
+        this.state.selectedPubs.forEach(pub => {
+          this.savePub(pub, res)
+        })
+      )
+  }
+
+  savePub = (pub, crawl) => {
+    const API = "http://localhost:3000/api/v1/pubs"
+    pub = { ...pub, crawl_id: crawl.id }
+    return fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pub)
+    })
+      .then(res => res.json())
+      .then(res => console.log(res))
   }
 
   getPubFromId = id => {
@@ -89,6 +116,9 @@ export default class CrawlContainer extends Component {
             suggestedPubs={this.state.suggestedPubs}
             crawlPubs={this.state.suggestedPubs}
             selectedPubs={this.state.selectedPubs}
+            selectedPubIDs={this.state.selectedPubIDs}
+            saveCrawl={this.saveCrawl}
+            savePub={this.savePub}
           />
         </div>
 

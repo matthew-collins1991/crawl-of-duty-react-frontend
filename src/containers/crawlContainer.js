@@ -7,7 +7,6 @@ import "semantic-ui-react"
 export default class CrawlContainer extends Component {
   state = {
     suggestedPubs: [],
-    selectedPubIDs: [],
     selectedPubs: [],
     coords: {
       lat: 51.84,
@@ -26,6 +25,10 @@ export default class CrawlContainer extends Component {
         })
       )
     }
+  }
+
+  getPubIds = array => {
+    return array.map(pub => pub.four_id)
   }
 
   getCrawlFromId = id => {
@@ -108,9 +111,8 @@ export default class CrawlContainer extends Component {
     console.log(data.name)
   }
 
-  addToSelectedPubIDs = id => {
+  addToSelectedPubs = id => {
     this.setState({
-      selectedPubIDs: [...this.state.selectedPubIDs, id],
       selectedPubs: [...this.state.selectedPubs, this.getPubFromId(id)]
     })
   }
@@ -136,7 +138,7 @@ export default class CrawlContainer extends Component {
             suggestedPubs={this.state.suggestedPubs}
             crawlPubs={this.state.suggestedPubs}
             selectedPubs={this.state.selectedPubs}
-            selectedPubIDs={this.state.selectedPubIDs}
+            selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
             saveCrawl={this.saveCrawl}
             savePub={this.savePub}
           />
@@ -148,9 +150,9 @@ export default class CrawlContainer extends Component {
             coords={this.state.coords}
             suggestedPubs={this.state.suggestedPubs}
             selectedPubs={this.state.selectedPubs}
-            selectedPubIDs={this.state.selectedPubIDs}
+            selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
             addLocation={this.addLocation}
-            addToSelectedPubIDs={this.addToSelectedPubIDs}
+            addToSelectedPubIDs={this.addToSelectedPubs}
           />
         </div>
       </div>

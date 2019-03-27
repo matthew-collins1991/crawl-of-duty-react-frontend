@@ -12,7 +12,17 @@ export default class crawlDetails extends Component {
     endTimeInput: "23:00"
   }
 
-  componentDidMount() {}
+  componentDidUpdate() {
+    if (this.props.crawl && this.state.placeSelected === false) {
+      this.setState({
+        placeSelected: true,
+        placeInput: this.props.crawl.location,
+        nameInput: this.props.crawl.name,
+        startTimeInput: this.props.crawl.start_time.substr(11, 5),
+        endTimeInput: this.props.crawl.end_time.substr(11, 5)
+      })
+    }
+  }
 
   getPubFromId = id => {
     return this.props.suggestedPubs.filter(pub => pub.four_id === id)[0]
@@ -86,24 +96,33 @@ export default class crawlDetails extends Component {
         {this.state.placeSelected ? (
           <div className="six wide column">
             <PubList
+              removePubFromList={pub => this.props.removePubFromList(pub)}
               selectedPubs={this.props.selectedPubs}
               endTime={this.state.endTimeInput}
               startTime={this.state.startTimeInput}
             />
-            <Button
-              as={Link}
-              to="/"
-              onClick={() =>
-                this.props.saveCrawl({
-                  name: this.state.nameInput,
-                  start_time: this.state.startTimeInput,
-                  end_time: this.state.endTimeInput,
-                  order_array: this.props.selectedPubIDs.toString()
-                })
-              }
-            >
-              SAVE
-            </Button>
+
+            <div className="ui centered grid" style={{ padding: 30 + "px" }}>
+              <br />
+
+              {this.props.selectedPubs.length > 0 ? (
+                <Button
+                  as={Link}
+                  to="/"
+                  onClick={() =>
+                    this.props.saveCrawl({
+                      name: this.state.nameInput,
+                      start_time: this.state.startTimeInput,
+                      end_time: this.state.endTimeInput,
+                      order_array: this.props.selectedPubIDs.toString(),
+                      location: this.state.placeInput
+                    })
+                  }
+                >
+                  SAVE
+                </Button>
+              ) : null}
+            </div>
           </div>
         ) : null}
       </>

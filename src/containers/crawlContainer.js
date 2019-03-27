@@ -7,7 +7,7 @@ import CrawlCard from "../components/crawlCard.js"
 
 export default class CrawlContainer extends Component {
   state = {
-    crawl: "",
+    crawl: undefined,
     suggestedPubs: [],
     selectedPubs: [],
     coords: {
@@ -134,34 +134,31 @@ export default class CrawlContainer extends Component {
         lng: lng
       }
     })
-    console.log(this.state.coords)
+  }
+
+  removePubFromList = pub => {
+    this.setState({
+      selectedPubs: this.state.selectedPubs.filter(
+        Selectedpub => Selectedpub.four_id !== pub.four_id
+      )
+    })
   }
 
   render() {
     return (
       <div className="ui grid">
         <div className="six wide column">
-          {!this.props.id ? (
-            <CrawlDetails
-              handleClick={this.getPubsAPI}
-              suggestedPubs={this.state.suggestedPubs}
-              crawlPubs={this.state.suggestedPubs}
-              selectedPubs={this.state.selectedPubs}
-              selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
-              saveCrawl={this.saveCrawl}
-              savePub={this.savePub}
-            />
-          ) : (
-            // <CrawlCard {...this.state.crawl} />
-            <Card>
-              <h2>{this.state.crawl.name}</h2>
-              <ol>
-                {this.state.selectedPubs.map(pub => (
-                  <li>{pub.name}</li>
-                ))}
-              </ol>
-            </Card>
-          )}
+          <CrawlDetails
+            crawl={this.state.crawl}
+            handleClick={this.getPubsAPI}
+            suggestedPubs={this.state.suggestedPubs}
+            crawlPubs={this.state.suggestedPubs}
+            selectedPubs={this.state.selectedPubs}
+            selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
+            saveCrawl={this.saveCrawl}
+            savePub={this.savePub}
+            removePubFromList={this.removePubFromList}
+          />{" "}
         </div>
 
         <div className="ten wide column">

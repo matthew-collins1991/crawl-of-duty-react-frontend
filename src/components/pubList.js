@@ -10,20 +10,27 @@ export default class PubList extends Component {
     totalMins: 0
   }
 
-componentWillUpdate() {
+  componentDidMount() {
     this.getTime()
-}
+  }
 
-getTime = () => {
-    if (this.state.startTime === this.props.startTime && this.state.endTime === this.props.endTime) {
-    }else{
-    this.setState({
+  componentDidUpdate() {
+    this.getTime()
+  }
+
+  getTime = () => {
+    if (
+      this.state.startTime === this.props.startTime &&
+      this.state.endTime === this.props.endTime
+    ) {
+    } else {
+      this.setState({
         startTime: this.props.startTime,
         endTime: this.props.endTime
-    })
-    this.splitTime(this.props.endTime, this.props.startTime)
-}
-}
+      })
+      this.splitTime(this.props.endTime, this.props.startTime)
+    }
+  }
 
   splitTime = (end, start) => {
     let endTime = end.split(":")
@@ -33,7 +40,6 @@ getTime = () => {
 
     this.getHours(numEndTime[0], numStartTime[0])
     this.getMinutes(numEndTime[1], numStartTime[1])
-    
   }
 
   getHours = (end, start) => {
@@ -43,9 +49,12 @@ getTime = () => {
     } else {
       calcHours = end - start
     }
-    this.setState({
-      hours: calcHours
-    }, () => this.timePerPub())
+    this.setState(
+      {
+        hours: calcHours
+      },
+      () => this.timePerPub()
+    )
   }
 
   getMinutes = (end, start) => {
@@ -61,31 +70,37 @@ getTime = () => {
   }
 
   timePerPub = () => {
-      let totalMins = (this.state.hours*60)+this.state.minutes
-        this.setState({
-            totalMins: totalMins
-        })
+    let totalMins = this.state.hours * 60 + this.state.minutes
+    this.setState({
+      totalMins: totalMins
+    })
   }
 
-  pubEntryTime = (i) => {
-      let minsToAdd = (this.state.totalMins/this.props.selectedPubs.length)*(i)
-      var hours = (minsToAdd / 60);
-      var rhours = Math.floor(hours);
-      var minutes = (hours - rhours) * 60;
-      var rminutes = Math.round(minutes);
-      let startTime = this.state.startTime.split(":")
-      let numStartTime = startTime.map(time => parseInt(time))
-      let newHour = (numStartTime[0] + rhours) >= 10 ? `${(numStartTime[0] + rhours)}` : `0${(numStartTime[0] + rhours)}`
-      let newMins = (numStartTime[1] + rminutes) >= 10 ? `${(numStartTime[1] + rminutes)}` : `0${(numStartTime[1] + rminutes)}`
-      if(newHour > 23){
-        (newHour-24) >= 10 ? newHour = `${newHour-24}` : newHour = `0${newHour-24}`
-        return `${newHour}:${newMins}`
-      }else{
-        
-        return `${newHour}:${newMins}`
-      }
+  pubEntryTime = i => {
+    let minsToAdd = (this.state.totalMins / this.props.selectedPubs.length) * i
+    var hours = minsToAdd / 60
+    var rhours = Math.floor(hours)
+    var minutes = (hours - rhours) * 60
+    var rminutes = Math.round(minutes)
+    let startTime = this.state.startTime.split(":")
+    let numStartTime = startTime.map(time => parseInt(time))
+    let newHour =
+      numStartTime[0] + rhours >= 10
+        ? `${numStartTime[0] + rhours}`
+        : `0${numStartTime[0] + rhours}`
+    let newMins =
+      numStartTime[1] + rminutes >= 10
+        ? `${numStartTime[1] + rminutes}`
+        : `0${numStartTime[1] + rminutes}`
+    if (newHour > 23) {
+      newHour - 24 >= 10
+        ? (newHour = `${newHour - 24}`)
+        : (newHour = `0${newHour - 24}`)
+      return `${newHour}:${newMins}`
+    } else {
+      return `${newHour}:${newMins}`
+    }
   }
-
 
   render() {
     return (
@@ -96,20 +111,23 @@ getTime = () => {
             <h5>Click on the map to add your first pub!</h5>
           </div>
         ) : (
-            
           <div className="ui centered two column grid">
-          
             <Table basic="very" celled collapsing>
               <Table.Header>
                 <Table.Row>
                   <Table.HeaderCell>Enter Time</Table.HeaderCell>
                   <Table.HeaderCell>Pub Name</Table.HeaderCell>
+                  <Table.HeaderCell>Remove</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
                 {this.props.selectedPubs.map((pub, i) => (
                   <Table.Row>
-                    <Table.Cell>{this.props.selectedPubs.length === 0 ? this.state.totalMins : this.pubEntryTime(i)}</Table.Cell>
+                    <Table.Cell>
+                      {this.props.selectedPubs.length === 0
+                        ? this.state.totalMins
+                        : this.pubEntryTime(i)}
+                    </Table.Cell>
                     <Table.Cell>
                       <Header as="h4" image>
                         <Image
@@ -119,6 +137,11 @@ getTime = () => {
                         />
                         <Header.Content>{pub.name}</Header.Content>
                       </Header>
+                    </Table.Cell>
+                    <Table.Cell>
+                      <Button onClick={() => this.props.removePubFromList(pub)}>
+                        Delete
+                      </Button>
                     </Table.Cell>
                   </Table.Row>
                 ))}

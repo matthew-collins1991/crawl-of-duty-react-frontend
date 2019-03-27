@@ -51,6 +51,7 @@ export default class crawlDetails extends Component {
               <Form.Field>
                 <label>Crawl Name</label>
                 <input
+                  maxlength={30}
                   value={this.state.nameInput}
                   onChange={event => {
                     this.setState({ nameInput: event.target.value })
@@ -122,7 +123,11 @@ export default class crawlDetails extends Component {
                   >
                     SAVE
                   </Button>
-                  <Button type="submit" onClick={this.props.toggleFilter}>
+                  <Button
+                    toggle
+                    active={this.props.filter}
+                    onClick={this.props.toggleFilter}
+                  >
                     {this.props.filter
                       ? "Show Suggested Pubs"
                       : "Hide Suggested Pubs"}

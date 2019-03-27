@@ -60,7 +60,7 @@ class CrawlCardList extends React.Component {
             </Form>
           </Menu>
         </div>
-        <Card.Group itemsPerRow={6}>
+        <Card.Group>
           {this.filteredCrawls().map(crawl => (
             <CrawlCard key={crawl.id} {...crawl} />
           ))}

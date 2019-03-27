@@ -11,14 +11,13 @@ class CrawlCard extends React.Component {
         />
         <div className="content">
           <h3 className="header">{this.props.name}</h3>
-          <ul>
-            {this.props.pubs.map(pub => (
+          <small>{this.props.location.toUpperCase()}</small>
+          <ol>
+            {this.props.pubs.slice(0, 6).map(pub => (
               <li key={pub.id}>{pub.name}</li>
             ))}
-          </ul>
-          <p>
-            <span role="img">⭐⭐⭐⭐⭐</span>
-          </p>
+          </ol>
+          {this.props.pubs.length > 6 ? <p>more...</p> : null}
         </div>
       </Card>
     )

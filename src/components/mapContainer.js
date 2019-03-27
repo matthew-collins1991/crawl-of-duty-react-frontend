@@ -20,7 +20,7 @@ export class MapContainer extends Component {
 
   getLinePath = () => {
     return this.props.selectedPubs.map(pub => {
-      return { lat: pub.lat, lng: pub.lng }
+      return { lat: parseFloat(pub.lat), lng: parseFloat(pub.lng) }
     })
   }
 
@@ -60,8 +60,8 @@ export class MapContainer extends Component {
               name={pub.name}
               id={pub.four_id}
               position={{
-                lat: pub.lat,
-                lng: pub.lng
+                lat: parseFloat(pub.lat),
+                lng: parseFloat(pub.lng)
               }}
               icon={
                 this.props.selectedPubIDs.includes(pub.four_id)

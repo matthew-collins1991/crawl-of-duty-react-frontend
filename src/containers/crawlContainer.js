@@ -7,6 +7,7 @@ import CrawlCard from "../components/crawlCard.js"
 
 export default class CrawlContainer extends Component {
   state = {
+    filter: false,
     crawl: undefined,
     suggestedPubs: [],
     selectedPubs: [],
@@ -21,6 +22,7 @@ export default class CrawlContainer extends Component {
     if (this.props.id) {
       this.getCrawlFromId(this.props.id).then(crawl =>
         this.setState({
+          filter: true,
           selectedPubs: crawl.pubs,
           selectedPubIDs: crawl.pubs.map(pub => pub.four_id),
           suggestedPubs: crawl.pubs,
@@ -55,9 +57,12 @@ export default class CrawlContainer extends Component {
       .then(res => res.json())
       .then(resp =>
         this.setState({
-          suggestedPubs: this.convertPubs(
-            resp.response.groups[0].items.map(item => item.venue)
-          )
+          suggestedPubs: [
+            ...this.state.suggestedPubs,
+            ...this.convertPubs(
+              resp.response.groups[0].items.map(item => item.venue)
+            )
+          ]
         })
       )
       .then(() => this.recenterMap())
@@ -144,6 +149,16 @@ export default class CrawlContainer extends Component {
     })
   }
 
+  toggleFilter = () => {
+    this.setState({
+      filter: !this.state.filter
+    })
+
+    if (this.state.suggestedPubs.length === this.state.selectedPubs.length) {
+      this.getPubsAPI(this.state.crawl.location)
+    }
+  }
+
   render() {
     return (
       <div className="ui grid">
@@ -158,6 +173,8 @@ export default class CrawlContainer extends Component {
             saveCrawl={this.saveCrawl}
             savePub={this.savePub}
             removePubFromList={this.removePubFromList}
+            toggleFilter={this.toggleFilter}
+            filter={this.state.filter}
           />{" "}
         </div>
 
@@ -170,6 +187,7 @@ export default class CrawlContainer extends Component {
             selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
             addLocation={this.addLocation}
             addToSelectedPubIDs={this.addToSelectedPubs}
+            filter={this.state.filter}
           />
         </div>
       </div>

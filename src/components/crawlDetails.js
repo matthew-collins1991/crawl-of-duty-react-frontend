@@ -49,7 +49,7 @@ export default class crawlDetails extends Component {
           {this.state.placeSelected ? (
             <>
               <Form.Field>
-                <label>Please name your Crawl</label>
+                <label>Crawl Name</label>
                 <input
                   value={this.state.nameInput}
                   onChange={event => {
@@ -108,16 +108,16 @@ export default class crawlDetails extends Component {
               {this.props.selectedPubs.length > 0 ? (
                 <>
                   <Button
-                    as={Link}
-                    to="/"
                     onClick={() =>
-                      this.props.saveCrawl({
-                        name: this.state.nameInput,
-                        start_time: this.state.startTimeInput,
-                        end_time: this.state.endTimeInput,
-                        order_array: this.props.selectedPubIDs.toString(),
-                        location: this.state.placeInput
-                      })
+                      this.props
+                        .saveCrawl({
+                          name: this.state.nameInput,
+                          start_time: this.state.startTimeInput,
+                          end_time: this.state.endTimeInput,
+                          order_array: this.props.selectedPubIDs.toString(),
+                          location: this.state.placeInput
+                        })
+                        .then(() => this.props.history.push("/"))
                     }
                   >
                     SAVE

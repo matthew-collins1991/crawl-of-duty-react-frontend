@@ -79,7 +79,7 @@ export default class CrawlContainer extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newCrawl)
-    })
+    }).then(resp => resp.json())
     // .then(res => res.json())
     // .then(res =>
     //   this.state.selectedPubs.forEach(pub => {
@@ -175,6 +175,7 @@ export default class CrawlContainer extends Component {
             removePubFromList={this.removePubFromList}
             toggleFilter={this.toggleFilter}
             filter={this.state.filter}
+            history={this.props.history}
           />{" "}
         </div>
 

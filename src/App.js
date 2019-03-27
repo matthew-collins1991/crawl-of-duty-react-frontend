@@ -17,13 +17,18 @@ class App extends Component {
 
           <Switch>
             <Route exact path="/" component={Index} />
-            
+
             <Route path="/crawls/new" component={CrawlContainer} />
 
             <Route
               path="/crawls/:id"
               component={routerProps => {
-                return <CrawlContainer id={routerProps.match.params.id} />
+                return (
+                  <CrawlContainer
+                    id={routerProps.match.params.id}
+                    {...routerProps}
+                  />
+                )
               }}
             />
           </Switch>

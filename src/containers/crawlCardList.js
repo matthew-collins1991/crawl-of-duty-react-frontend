@@ -11,7 +11,7 @@ state = {
 
 filteredCrawls = () => {
   let numberFilter = this.props.crawls.filter(crawl => crawl.pubs.length>= this.state.pubNumberSearch)
-  return numberFilter
+  return numberFilter.filter(crawl => crawl.location.toLowerCase().includes(this.state.locationSearch.toLowerCase()))
 }
 
   render() {

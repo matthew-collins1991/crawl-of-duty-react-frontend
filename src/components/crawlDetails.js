@@ -106,21 +106,28 @@ export default class crawlDetails extends Component {
               <br />
 
               {this.props.selectedPubs.length > 0 ? (
-                <Button
-                  as={Link}
-                  to="/"
-                  onClick={() =>
-                    this.props.saveCrawl({
-                      name: this.state.nameInput,
-                      start_time: this.state.startTimeInput,
-                      end_time: this.state.endTimeInput,
-                      order_array: this.props.selectedPubIDs.toString(),
-                      location: this.state.placeInput
-                    })
-                  }
-                >
-                  SAVE
-                </Button>
+                <>
+                  <Button
+                    as={Link}
+                    to="/"
+                    onClick={() =>
+                      this.props.saveCrawl({
+                        name: this.state.nameInput,
+                        start_time: this.state.startTimeInput,
+                        end_time: this.state.endTimeInput,
+                        order_array: this.props.selectedPubIDs.toString(),
+                        location: this.state.placeInput
+                      })
+                    }
+                  >
+                    SAVE
+                  </Button>
+                  <Button type="submit" onClick={this.props.toggleFilter}>
+                    {this.props.filter
+                      ? "Show Suggested Pubs"
+                      : "Hide Suggested Pubs"}
+                  </Button>
+                </>
               ) : null}
             </div>
           </div>

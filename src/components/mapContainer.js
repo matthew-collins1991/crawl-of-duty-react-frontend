@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { GoogleApiWrapper, Marker, Polyline, Map } from "google-maps-react"
 import InfoWindowEx from "./InfoWindowEx"
 
-
 const style = {
   //   position: "absolute",
   width: "100%",
@@ -37,7 +36,7 @@ export class MapContainer extends Component {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: nul
+        activeMarker: null
       })
     }
   }

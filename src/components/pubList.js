@@ -96,7 +96,7 @@ getTime = () => {
             <h5>Click on the map to add your first pub!</h5>
           </div>
         ) : (
-
+            
           <div className="ui centered two column grid">
           
             <Table basic="very" celled collapsing>

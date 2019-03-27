@@ -11,7 +11,6 @@ export default class Nav extends Component {
         <Menu>
           <Menu.Item name="home" as={NavLink} to="/" />
           <Menu.Item name="create-new" as={NavLink} to="/crawls/new" />
-          <Menu.Item name="contact" as={NavLink} to="/contact" />
           <Menu.Menu position="right">
             <Menu.Item>
               <Dropdown item text="Login">

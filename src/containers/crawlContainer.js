@@ -1,11 +1,13 @@
 import React, { Component } from "react"
 import CrawlDetails from "../components/crawlDetails.js"
 import MapContainer from "../components/mapContainer.js"
-
+import { Card, Image } from "semantic-ui-react"
 import "semantic-ui-react"
+import CrawlCard from "../components/crawlCard.js"
 
 export default class CrawlContainer extends Component {
   state = {
+    crawl: "",
     suggestedPubs: [],
     selectedPubs: [],
     coords: {
@@ -21,7 +23,13 @@ export default class CrawlContainer extends Component {
         this.setState({
           selectedPubs: crawl.pubs,
           selectedPubIDs: crawl.pubs.map(pub => pub.four_id),
-          suggestedPubs: crawl.pubs
+          suggestedPubs: crawl.pubs,
+          crawl: crawl,
+          coords: {
+            lat: parseFloat(crawl.pubs[0].lat),
+            lng: parseFloat(crawl.pubs[0].lng)
+          },
+          zoom: 15
         })
       )
     }
@@ -133,15 +141,27 @@ export default class CrawlContainer extends Component {
     return (
       <div className="ui grid">
         <div className="six wide column">
-          <CrawlDetails
-            handleClick={this.getPubsAPI}
-            suggestedPubs={this.state.suggestedPubs}
-            crawlPubs={this.state.suggestedPubs}
-            selectedPubs={this.state.selectedPubs}
-            selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
-            saveCrawl={this.saveCrawl}
-            savePub={this.savePub}
-          />
+          {!this.props.id ? (
+            <CrawlDetails
+              handleClick={this.getPubsAPI}
+              suggestedPubs={this.state.suggestedPubs}
+              crawlPubs={this.state.suggestedPubs}
+              selectedPubs={this.state.selectedPubs}
+              selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
+              saveCrawl={this.saveCrawl}
+              savePub={this.savePub}
+            />
+          ) : (
+            // <CrawlCard {...this.state.crawl} />
+            <Card>
+              <h2>{this.state.crawl.name}</h2>
+              <ol>
+                {this.state.selectedPubs.map(pub => (
+                  <li>{pub.name}</li>
+                ))}
+              </ol>
+            </Card>
+          )}
         </div>
 
         <div className="ten wide column">

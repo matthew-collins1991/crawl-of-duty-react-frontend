@@ -86,10 +86,17 @@ export default class crawlDetails extends Component {
         {this.state.placeSelected ? (
           <div className="six wide column">
             <PubList
+              removePubFromList={(pub) => this.props.removePubFromList(pub) }
               selectedPubs={this.props.selectedPubs}
               endTime={this.state.endTimeInput}
               startTime={this.state.startTimeInput}
             />
+            
+            <div className="ui centered grid" style={{ padding: 30 + "px" }}>
+            <br></br>
+
+            {
+                this.props.selectedPubs.length > 0 ? 
             <Button
               as={Link}
               to="/"
@@ -104,6 +111,10 @@ export default class crawlDetails extends Component {
             >
               SAVE
             </Button>
+            :
+            null
+            }
+            </div>
           </div>
         ) : null}
       </>

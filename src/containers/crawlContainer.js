@@ -126,7 +126,12 @@ export default class CrawlContainer extends Component {
         lng: lng
       }
     })
-    console.log(this.state.coords)
+  }
+
+  removePubFromList = (pub) => {
+      this.setState({
+        selectedPubs: this.state.selectedPubs.filter(Selectedpub => Selectedpub.four_id !== pub.four_id)
+      })
   }
 
   render() {
@@ -141,6 +146,7 @@ export default class CrawlContainer extends Component {
             selectedPubIDs={this.getPubIds(this.state.selectedPubs)}
             saveCrawl={this.saveCrawl}
             savePub={this.savePub}
+            removePubFromList={(pub) => this.removePubFromList(pub) }
           />
         </div>
 

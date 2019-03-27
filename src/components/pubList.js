@@ -104,6 +104,7 @@ getTime = () => {
                 <Table.Row>
                   <Table.HeaderCell>Enter Time</Table.HeaderCell>
                   <Table.HeaderCell>Pub Name</Table.HeaderCell>
+                  <Table.HeaderCell>Remove</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
               <Table.Body>
@@ -120,6 +121,7 @@ getTime = () => {
                         <Header.Content>{pub.name}</Header.Content>
                       </Header>
                     </Table.Cell>
+                    <Table.Cell><Button onClick={() => this.props.removePubFromList(pub)}>Delete</Button></Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>

@@ -37,7 +37,7 @@ export class MapContainer extends Component {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: nul
+        activeMarker: null
       })
     }
   }

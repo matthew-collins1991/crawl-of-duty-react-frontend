@@ -2,11 +2,8 @@ import React from "react"
 import CrawlCard from "../components/crawlCard.js"
 import {
   Card,
-  Dropdown,
   Form,
-  Button,
   Menu,
-  Input,
   Label
 } from "semantic-ui-react"
 

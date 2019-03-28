@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Form, Button } from "semantic-ui-react"
 import PubList from "./pubList"
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
+
 
 export default class crawlDetails extends Component {
   state = {

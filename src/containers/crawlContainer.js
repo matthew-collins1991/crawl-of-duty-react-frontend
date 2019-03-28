@@ -1,9 +1,8 @@
 import React, { Component } from "react"
 import CrawlDetails from "../components/crawlDetails.js"
 import MapContainer from "../components/mapContainer.js"
-import { Card, Image } from "semantic-ui-react"
 import "semantic-ui-react"
-import CrawlCard from "../components/crawlCard.js"
+
 
 export default class CrawlContainer extends Component {
   state = {

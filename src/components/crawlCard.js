@@ -1,6 +1,6 @@
 import React from "react"
 import { Card, Image } from "semantic-ui-react"
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 class CrawlCard extends React.Component {
   render() {

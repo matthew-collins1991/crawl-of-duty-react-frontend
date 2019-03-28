@@ -3,8 +3,9 @@ import Index from "./containers/index.js"
 import "./App.css"
 import Nav from "./containers/Nav.js"
 import CrawlContainer from "./containers/crawlContainer.js"
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
-import { MapContainer } from "./components/mapContainer.js"
+import Login from "./containers/Login.js"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+
 
 class App extends Component {
   state = {}
@@ -16,7 +17,9 @@ class App extends Component {
           <Nav />
 
           <Switch>
-            <Route exact path="/" component={Index} />
+          <Route exact path="/" component={Login} />
+
+            <Route exact path="/home" component={Index} />
 
             <Route path="/crawls/new" component={CrawlContainer} />
 

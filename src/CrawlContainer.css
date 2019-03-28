@@ -19,20 +19,15 @@ code {
 
 
 
-#index-div {
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: relative;
-}
 
-#index-div::after {
+
+#crawlContainer-div::after {
   content: "";
-  background: url("./patrick-tomasso-499112-unsplash.jpg");
-  background-size: cover;
+  background: url("./jonas-jacobsson-628316-unsplash.jpg");
+  background-size: contain;
   filter: blur(4px);
   -webkit-filter: blur(4px);
-  opacity: 0.5;
+  opacity: 0.9;
   top: 0;
   left: 0;
   bottom: 0;

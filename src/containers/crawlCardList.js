@@ -57,11 +57,13 @@ class CrawlCardList extends React.Component {
             </Form>
           </Menu>
         </div>
-        <Card.Group>
+        <div>
+        <Card.Group style={{ marginLeft: 10 + "px", marginRight: 10 + "px", marginTop: 5 + "px" }}>
           {this.filteredCrawls().map(crawl => (
             <CrawlCard key={crawl.id} {...crawl} />
           ))}
         </Card.Group>
+        </div>
       </div>
     )
   }

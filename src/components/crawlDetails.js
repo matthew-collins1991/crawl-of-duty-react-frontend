@@ -35,9 +35,9 @@ export default class crawlDetails extends Component {
   render() {
     return (
       <>
-        <Form style={{ width: 100 + "%", padding: 20 + "px" }}>
+        <Form style={{ width: 100 + "%", padding: 20 + "px"}}>
           <Form.Field>
-            <label>Where is your Crawl</label>
+            <label style={{color: "#FFFFFF"}}>Where is your Crawl</label>
             <input
               value={this.state.placeInput}
               onChange={event => {
@@ -49,7 +49,7 @@ export default class crawlDetails extends Component {
           {this.state.placeSelected ? (
             <>
               <Form.Field>
-                <label>Crawl Name</label>
+                <label style={{color: "#FFFFFF"}}>Crawl Name</label>
                 <input
                   maxlength={30}
                   value={this.state.nameInput}
@@ -60,7 +60,7 @@ export default class crawlDetails extends Component {
                 />
               </Form.Field>
               <Form.Field>
-                <label>Start Time:</label>
+                <label style={{color: "#FFFFFF"}}>Start Time:</label>
                 <input
                   value={this.state.startTimeInput}
                   type="time"
@@ -70,7 +70,7 @@ export default class crawlDetails extends Component {
                 />
               </Form.Field>
               <Form.Field>
-                <label>End Time:</label>
+                <label style={{color: "#FFFFFF"}}>End Time:</label>
                 <input
                   value={this.state.endTimeInput}
                   type="time"

@@ -104,7 +104,7 @@ export default class PubList extends Component {
 
   render() {
     return (
-      <div className="eight wide column">
+      <div className="eight wide column" style={{color: "#FFFFFF"}}>
         <br />
         {this.props.selectedPubs.length === 0 ? (
           <div className="ui centered two column grid">
@@ -114,16 +114,16 @@ export default class PubList extends Component {
           <div className="ui centered two column grid">
             <Table basic="very" celled collapsing>
               <Table.Header>
-                <Table.Row>
-                  <Table.HeaderCell>Enter Time</Table.HeaderCell>
-                  <Table.HeaderCell>Pub Name</Table.HeaderCell>
-                  <Table.HeaderCell>Remove</Table.HeaderCell>
+                <Table.Row >
+                  <Table.HeaderCell style={{color: "#FFFFFF"}}>Enter Time</Table.HeaderCell>
+                  <Table.HeaderCell style={{color: "#FFFFFF"}}>Pub Name</Table.HeaderCell>
+                  <Table.HeaderCell style={{color: "#FFFFFF"}}>Remove</Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
-              <Table.Body>
+              <Table.Body style={{color: "#FFFFFF"}}>
                 {this.props.selectedPubs.map((pub, i) => (
                   <Table.Row>
-                    <Table.Cell>
+                    <Table.Cell style={{color: "#FFFFFF"}}>
                       {this.props.selectedPubs.length === 0
                         ? this.state.totalMins
                         : this.pubEntryTime(i)}
@@ -135,7 +135,7 @@ export default class PubList extends Component {
                           rounded
                           size="mini"
                         />
-                        <Header.Content>{pub.name}</Header.Content>
+                        <Header.Content style={{color: "#FFFFFF"}}>{pub.name}</Header.Content>
                       </Header>
                     </Table.Cell>
                     <Table.Cell>

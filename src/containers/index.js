@@ -1,5 +1,6 @@
 import React from "react"
 import CrawlCardList from "../containers/crawlCardList.js"
+import "../index.css"
 
 const API = "http://localhost:3000/api/v1/crawls"
 

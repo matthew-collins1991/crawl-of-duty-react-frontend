@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import CrawlDetails from "../components/crawlDetails.js"
 import MapContainer from "../components/mapContainer.js"
 import "semantic-ui-react"
+import "../CrawlContainer.css"
 
 
 export default class CrawlContainer extends Component {
@@ -160,6 +161,7 @@ export default class CrawlContainer extends Component {
 
   render() {
     return (
+    <div id ="crawlContainer-div">
       <div className="ui grid">
         <div className="six wide column">
           <CrawlDetails
@@ -190,6 +192,7 @@ export default class CrawlContainer extends Component {
             filter={this.state.filter}
           />
         </div>
+      </div>
       </div>
     )
   }

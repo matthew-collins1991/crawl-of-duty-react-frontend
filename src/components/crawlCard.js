@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 class CrawlCard extends React.Component {
   render() {
     return (
-      <Card as={Link} to={`/crawls/${this.props.id}`}>
+      <Card as={Link} to={`/crawls/${this.props.id}`} >
         <Image
           src={`https://loremflickr.com/320/240/pub?random=${this.props.id}`}
         />

@@ -11,7 +11,11 @@ class CrawlCard extends React.Component {
         />
         <div className="content">
           <h3 className="header">{this.props.name}</h3>
-          <small>{this.props.location.toUpperCase()}</small>
+          <small>
+            {this.props.location.toUpperCase()} (
+            {this.props.start_time.substr(11, 5)}-
+            {this.props.end_time.substr(11, 5)})
+          </small>
           <ol>
             {this.props.pubs.slice(0, 5).map(pub => (
               <li key={pub.id}>{pub.name}</li>

@@ -17,21 +17,17 @@ code {
   word-wrap: break-word;
 }
 
-
-
-
-
 #crawlContainer-div::after {
   content: "";
   background: url("./jonas-jacobsson-628316-unsplash.jpg");
-  background-size: contain;
+  background-size: 120%;
   filter: blur(4px);
   -webkit-filter: blur(4px);
-  opacity: 0.9;
+  opacity: 0.95;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }

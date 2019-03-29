@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Form, Button } from "semantic-ui-react"
 import PubList from "./pubList"
 
-
 export default class crawlDetails extends Component {
   state = {
     placeSelected: false,
@@ -35,21 +34,23 @@ export default class crawlDetails extends Component {
   render() {
     return (
       <>
-        <Form style={{ width: 100 + "%", padding: 20 + "px"}}>
-          <Form.Field>
-            <label style={{color: "#FFFFFF"}}>Where is your Crawl</label>
-            <input
-              value={this.state.placeInput}
-              onChange={event => {
-                this.setState({ placeInput: event.target.value })
-              }}
-              placeholder="Name a city or area"
-            />
-          </Form.Field>
+        <Form style={{ width: 100 + "%", padding: 20 + "px" }}>
+          {!this.state.placeSelected ? (
+            <Form.Field>
+              <label style={{ color: "#FFFFFF" }}>Where is your Crawl</label>
+              <input
+                value={this.state.placeInput}
+                onChange={event => {
+                  this.setState({ placeInput: event.target.value })
+                }}
+                placeholder="Name a city or area"
+              />
+            </Form.Field>
+          ) : null}
           {this.state.placeSelected ? (
             <>
               <Form.Field>
-                <label style={{color: "#FFFFFF"}}>Crawl Name</label>
+                <label style={{ color: "#FFFFFF" }}>Crawl Name</label>
                 <input
                   maxlength={30}
                   value={this.state.nameInput}
@@ -60,7 +61,7 @@ export default class crawlDetails extends Component {
                 />
               </Form.Field>
               <Form.Field>
-                <label style={{color: "#FFFFFF"}}>Start Time:</label>
+                <label style={{ color: "#FFFFFF" }}>Start Time:</label>
                 <input
                   value={this.state.startTimeInput}
                   type="time"
@@ -70,7 +71,7 @@ export default class crawlDetails extends Component {
                 />
               </Form.Field>
               <Form.Field>
-                <label style={{color: "#FFFFFF"}}>End Time:</label>
+                <label style={{ color: "#FFFFFF" }}>End Time:</label>
                 <input
                   value={this.state.endTimeInput}
                   type="time"
@@ -118,7 +119,7 @@ export default class crawlDetails extends Component {
                           order_array: this.props.selectedPubIDs.toString(),
                           location: this.state.placeInput
                         })
-                        .then(() => this.props.history.push("/"))
+                        .then(() => this.props.history.push("/home"))
                     }
                   >
                     SAVE

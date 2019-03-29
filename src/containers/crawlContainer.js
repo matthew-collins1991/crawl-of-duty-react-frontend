@@ -180,7 +180,7 @@ export default class CrawlContainer extends Component {
           />{" "}
         </div>
 
-        <div className="ten wide column">
+        <div className="ten wide column map-container">
           <MapContainer
             zoom={this.state.zoom}
             coords={this.state.coords}

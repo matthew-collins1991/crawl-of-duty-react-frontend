@@ -149,6 +149,7 @@ export default class CrawlContainer extends Component {
     })
   }
 
+  // this will control what is filtered
   toggleFilter = () => {
     this.setState({
       filter: !this.state.filter

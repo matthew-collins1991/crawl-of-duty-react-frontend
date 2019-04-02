@@ -141,6 +141,7 @@ export default class CrawlContainer extends Component {
     })
   }
 
+  // delete pub from selected list
   removePubFromList = pub => {
     this.setState({
       selectedPubs: this.state.selectedPubs.filter(

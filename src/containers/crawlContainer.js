@@ -42,7 +42,7 @@ export default class CrawlContainer extends Component {
   }
 
   getCrawlFromId = id => {
-    const API = `http://localhost:3000/api/v1/crawls/${id}`
+    const API = `https://crawl-of-duty-backend.herokuapp.com/api/v1/crawls/${id}`
 
     return fetch(API).then(res => res.json())
   }

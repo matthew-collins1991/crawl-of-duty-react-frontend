@@ -2,7 +2,7 @@ import React from "react"
 import CrawlCardList from "../containers/crawlCardList.js"
 import "../index.css"
 
-const API = "http://localhost:3000/api/v1/crawls"
+const API = "https://crawl-of-duty-backend.herokuapp.com/api/v1/crawls"
 
 class Index extends React.Component {
   state = {
@@ -20,7 +20,7 @@ class Index extends React.Component {
   }
 
   render() {
-    return ( 
+    return (
     <div id="index-div">
     <CrawlCardList crawls={this.state.crawls.reverse()} />
     </div>

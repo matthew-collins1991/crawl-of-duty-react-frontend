@@ -69,7 +69,7 @@ export default class CrawlContainer extends Component {
   }
 
   saveCrawl = crawl => {
-    const API = "http://localhost:3000/api/v1/crawls"
+    const API = "https://crawl-of-duty-backend.herokuapp.com/api/v1/crawls"
     const newCrawl = {
       crawl: crawl,
       pubs: this.state.selectedPubs
@@ -89,7 +89,7 @@ export default class CrawlContainer extends Component {
   }
 
   savePub = (pub, crawl) => {
-    const API = "http://localhost:3000/api/v1/pubs"
+    const API = "https://crawl-of-duty-backend.herokuapp.com/api/v1/pubs"
     pub = { ...pub, crawl_id: crawl.id }
     return fetch(API, {
       method: "POST",

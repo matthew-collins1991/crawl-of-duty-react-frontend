@@ -14,12 +14,13 @@ export default class Login extends Component {
         <h1>Login</h1>
             <Form style={{ width: 100 + "%", padding: 20 + "px" }} className="centered">
             <Form.Field>
-                <label>First Name</label>
-                <input placeholder="First Name" />
+                <label>UserName</label>
+                <input placeholder="First Name" value="MattCollins1991"/>
+
             </Form.Field>
             <Form.Field>
-                <label>Last Name</label>
-                <input placeholder="Last Name" />
+                <label>Password</label>
+                <input placeholder="Password" type="password" value="London"/>
             </Form.Field>
 
             <Button className="ui submitbutton centered column" type="submit" as={NavLink} to="/home">Submit</Button>

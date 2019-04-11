@@ -28,9 +28,15 @@ code {
   content: "";
   background: url("./patrick-tomasso-499112-unsplash.jpg");
   background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   filter: blur(4px);
   -webkit-filter: blur(4px);
   background-repeat: repeat;
+  -webkit-background-repeat: repeat;
+  -moz-background-repeat: repeat;
+  -o-background-repeat: repeat;
   opacity: 0.85;
   top: 0;
   left: 0;

@@ -43,7 +43,7 @@ export class MapContainer extends Component {
 
   render() {
     return (
-        <div style={{height: "-webkit-fill-available", borderLeft: 7 + "px solid rgba(0, 0, 0, 0.2)"}}>
+        <div >
       <Map
         google={this.props.google}
         style={style}
